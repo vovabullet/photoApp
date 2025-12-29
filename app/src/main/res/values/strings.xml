@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Camera Coursework</string>
+    <string name="capture_button">Capture Button</string>
+    <string name="switch_camera">Switch camera</string>
+    <string name="go_to_video">Go to Video</string>
+    <string name="gallery">Gallery</string>
+    <string name="record_button">Record Button</string>
+    <string name="go_to_photo">Go to Photo</string>
+    <string name="add_media">Add Media</string>
+</resources>
