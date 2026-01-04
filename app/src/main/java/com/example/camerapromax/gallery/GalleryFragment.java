@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A fragment for displaying a gallery of media files (images and videos).
- * This fragment uses a RecyclerView to display the media files in a grid layout.
- * It allows users to view and delete media files.
+ * Фрагмент для отображения галереи медиафайлов (изображений и видео).
+ * Этот фрагмент использует RecyclerView для отображения медиафайлов в виде сетки.
+ * Он позволяет пользователям просматривать и удалять медиафайлы.
  */
 public class GalleryFragment extends Fragment {
 
@@ -29,12 +29,12 @@ public class GalleryFragment extends Fragment {
     private final List<MediaFile> mediaFiles = new ArrayList<>();
 
     /**
-     * Inflates the layout for this fragment.
+     * Создает макет для этого фрагмента.
      *
-     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
-     * @return The View for the fragment's UI, or null.
+     * @param inflater           Объект LayoutInflater, который можно использовать для создания представлений во фрагменте.
+     * @param container          Если не null, это родительское представление, к которому должен быть прикреплен интерфейс фрагмента.
+     * @param savedInstanceState Если не null, этот фрагмент восстанавливается из предыдущего сохраненного состояния, как указано здесь.
+     * @return Представление для интерфейса фрагмента или null.
      */
     @Nullable
     @Override
@@ -44,11 +44,11 @@ public class GalleryFragment extends Fragment {
     }
 
     /**
-     * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has returned, but before any saved state has been restored in to the view.
-     * This method initializes the RecyclerView and loads the media files from the device's storage.
+     * Вызывается сразу после возврата из {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}, но до восстановления сохраненного состояния в представление.
+     * Этот метод инициализирует RecyclerView и загружает медиафайлы из хранилища устройства.
      *
-     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @param view               Представление, возвращенное методом {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState Если не null, этот фрагмент восстанавливается из предыдущего сохраненного состояния, как указано здесь.
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -58,8 +58,8 @@ public class GalleryFragment extends Fragment {
     }
 
     /**
-     * Sets up the RecyclerView with a GridLayoutManager and the GalleryAdapter.
-     * It also defines the click listener for the gallery items, allowing users to view or delete them.
+     * Настраивает RecyclerView с GridLayoutManager и GalleryAdapter.
+     * Также определяет слушатель кликов для элементов галереи, позволяя пользователям просматривать или удалять их.
      */
     private void setupRecyclerView() {
         adapter = new GalleryAdapter(mediaFiles, mediaFile -> {
@@ -82,8 +82,8 @@ public class GalleryFragment extends Fragment {
     }
 
     /**
-     * Loads media files (images and videos) from the device's external storage using a ContentResolver.
-     * The loaded files are added to the {@code mediaFiles} list and the adapter is notified of the data change.
+     * Загружает медиафайлы (изображения и видео) из внешнего хранилища устройства с помощью ContentResolver.
+     * Загруженные файлы добавляются в список {@code mediaFiles}, и адаптер уведомляется об изменении данных.
      */
     private void loadMediaFiles() {
         mediaFiles.clear();
@@ -126,10 +126,10 @@ public class GalleryFragment extends Fragment {
     }
 
     /**
-     * Deletes a media file from the device's storage.
-     * This method shows a confirmation dialog before deleting the file.
+     * Удаляет медиафайл из хранилища устройства.
+     * Этот метод показывает диалог подтверждения перед удалением файла.
      *
-     * @param mediaFile The {@link MediaFile} to be deleted.
+     * @param mediaFile {@link MediaFile}, который нужно удалить.
      */
     private void deleteMediaFile(MediaFile mediaFile) {
         new AlertDialog.Builder(requireContext())
@@ -152,9 +152,9 @@ public class GalleryFragment extends Fragment {
     }
 
     /**
-     * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has been detached from the fragment.
-     * The next time the fragment needs to be displayed, a new view will be created.
-     * This sets the binding to null to avoid memory leaks.
+     * Вызывается, когда представление, ранее созданное методом {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}, было отсоединено от фрагмента.
+     * При следующем отображении фрагмента будет создано новое представление.
+     * Устанавливает привязку в null, чтобы избежать утечек памяти.
      */
     @Override
     public void onDestroyView() {

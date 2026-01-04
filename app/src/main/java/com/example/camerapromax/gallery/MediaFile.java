@@ -3,8 +3,8 @@ package com.example.camerapromax.gallery;
 import android.net.Uri;
 
 /**
- * A data class representing a media file.
- * This class holds the URI, name, and MIME type of a media file.
+ * Класс данных, представляющий медиафайл.
+ * Этот класс содержит URI, имя и MIME-тип медиафайла.
  */
 public class MediaFile {
     private final Uri uri;
@@ -12,11 +12,11 @@ public class MediaFile {
     private final String type;
 
     /**
-     * Constructs a new MediaFile.
+     * Создает новый MediaFile.
      *
-     * @param uri  The URI of the media file.
-     * @param name The name of the media file.
-     * @param type The MIME type of the media file.
+     * @param uri  URI медиафайла.
+     * @param name Имя медиафайла.
+     * @param type MIME-тип медиафайла.
      */
     public MediaFile(Uri uri, String name, String type) {
         this.uri = uri;
@@ -25,27 +25,27 @@ public class MediaFile {
     }
 
     /**
-     * Gets the URI of the media file.
+     * Получает URI медиафайла.
      *
-     * @return The URI of the media file.
+     * @return URI медиафайла.
      */
     public Uri getUri() {
         return uri;
     }
 
     /**
-     * Gets the name of the media file.
+     * Получает имя медиафайла.
      *
-     * @return The name of the media file.
+     * @return Имя медиафайла.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Gets the MIME type of the media file.
+     * Получает MIME-тип медиафайла.
      *
-     * @return The MIME type of the media file.
+     * @return MIME-тип медиафайла.
      */
     public String getType() {
         return type;

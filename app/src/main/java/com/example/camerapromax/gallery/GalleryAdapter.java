@@ -11,8 +11,8 @@ import com.example.camerapromax.databinding.GalleryItemBinding;
 import java.util.List;
 
 /**
- * An adapter for displaying media files in a RecyclerView.
- * This adapter is responsible for creating and binding views for each media file in the list.
+ * Адаптер для отображения медиафайлов в RecyclerView.
+ * Этот адаптер отвечает за создание и привязку представлений для каждого медиафайла в списке.
  */
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder> {
 
@@ -20,22 +20,22 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     private final OnItemClickListener onItemClickListener;
 
     /**
-     * Interface for handling clicks on items in the RecyclerView.
+     * Интерфейс для обработки кликов по элементам в RecyclerView.
      */
     public interface OnItemClickListener {
         /**
-         * Called when a media file item is clicked.
+         * Вызывается при клике на элемент медиафайла.
          *
-         * @param mediaFile The clicked {@link MediaFile}.
+         * @param mediaFile Кликнутый {@link MediaFile}.
          */
         void onItemClick(MediaFile mediaFile);
     }
 
     /**
-     * Constructs a new GalleryAdapter.
+     * Создает новый GalleryAdapter.
      *
-     * @param mediaFiles        The list of media files to display.
-     * @param onItemClickListener The listener for item clicks.
+     * @param mediaFiles        Список медиафайлов для отображения.
+     * @param onItemClickListener Слушатель кликов по элементам.
      */
     public GalleryAdapter(List<MediaFile> mediaFiles, OnItemClickListener onItemClickListener) {
         this.mediaFiles = mediaFiles;
@@ -43,11 +43,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     }
 
     /**
-     * Called when RecyclerView needs a new {@link GalleryViewHolder} of the given type to represent an item.
+     * Вызывается, когда RecyclerView необходим новый {@link GalleryViewHolder} данного типа для представления элемента.
      *
-     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
-     * @param viewType The view type of the new View.
-     * @return A new GalleryViewHolder that holds a View of the given view type.
+     * @param parent   ViewGroup, в которую будет добавлено новое представление после привязки к позиции адаптера.
+     * @param viewType Тип представления нового представления.
+     * @return Новый GalleryViewHolder, содержащий представление данного типа.
      */
     @NonNull
     @Override
@@ -56,10 +56,10 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     }
 
     /**
-     * Called by RecyclerView to display the data at the specified position.
+     * Вызывается RecyclerView для отображения данных в указанной позиции.
      *
-     * @param holder   The GalleryViewHolder which should be updated to represent the contents of the item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param holder   GalleryViewHolder, который должен быть обновлен для представления содержимого элемента в данной позиции набора данных.
+     * @param position Позиция элемента в наборе данных адаптера.
      */
     @Override
     public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
@@ -67,9 +67,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     }
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
+     * Возвращает общее количество элементов в наборе данных, хранящемся адаптером.
      *
-     * @return The total number of items in this adapter.
+     * @return Общее количество элементов в этом адаптере.
      */
     @Override
     public int getItemCount() {
@@ -77,16 +77,16 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     }
 
     /**
-     * A ViewHolder for displaying a single media file item.
+     * ViewHolder для отображения одного элемента медиафайла.
      */
     class GalleryViewHolder extends RecyclerView.ViewHolder {
 
         private final GalleryItemBinding binding;
 
         /**
-         * Constructs a new GalleryViewHolder.
+         * Создает новый GalleryViewHolder.
          *
-         * @param binding The view binding for the gallery item layout.
+         * @param binding Привязка представления для макета элемента галереи.
          */
         public GalleryViewHolder(GalleryItemBinding binding) {
             super(binding.getRoot());
@@ -94,9 +94,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
         }
 
         /**
-         * Binds a media file to the view.
+         * Привязывает медиафайл к представлению.
          *
-         * @param mediaFile The {@link MediaFile} to bind.
+         * @param mediaFile {@link MediaFile} для привязки.
          */
         public void bind(MediaFile mediaFile) {
             Glide.with(itemView.getContext())

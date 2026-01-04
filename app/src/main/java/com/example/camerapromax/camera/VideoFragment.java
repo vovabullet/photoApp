@@ -44,7 +44,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Простой подкласс {@link Fragment}.
  */
 public class VideoFragment extends Fragment {
 
@@ -78,12 +78,12 @@ public class VideoFragment extends Fragment {
             });
 
     /**
-     * Inflates the layout for this fragment.
+     * Создает макет для этого фрагмента.
      *
-     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
-     * @return The View for the fragment's UI, or null.
+     * @param inflater           Объект LayoutInflater, который можно использовать для создания представлений во фрагменте.
+     * @param container          Если не null, это родительское представление, к которому должен быть прикреплен интерфейс фрагмента.
+     * @param savedInstanceState Если не null, этот фрагмент восстанавливается из предыдущего сохраненного состояния, как указано здесь.
+     * @return Представление для интерфейса фрагмента или null.
      */
     @Nullable
     @Override
@@ -93,11 +93,11 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has returned, but before any saved state has been restored in to the view.
-     * This method initializes the camera, sets up listeners for UI elements, and requests necessary permissions.
+     * Вызывается сразу после возврата из {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}, но до восстановления сохраненного состояния в представление.
+     * Этот метод инициализирует камеру, устанавливает слушатели для элементов интерфейса и запрашивает необходимые разрешения.
      *
-     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @param view               Представление, возвращенное методом {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState Если не null, этот фрагмент восстанавливается из предыдущего сохраненного состояния, как указано здесь.
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -126,9 +126,9 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Checks if all required permissions are granted.
+     * Проверяет, предоставлены ли все необходимые разрешения.
      *
-     * @return {@code true} if all permissions are granted, {@code false} otherwise.
+     * @return {@code true}, если все разрешения предоставлены, {@code false} в противном случае.
      */
     private boolean allPermissionsGranted() {
         for (String permission : REQUIRED_PERMISSIONS) {
@@ -140,8 +140,8 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Initializes and starts the camera using CameraX.
-     * This method sets up the preview and video capture use cases and binds them to the fragment's lifecycle.
+     * Инициализирует и запускает камеру с использованием CameraX.
+     * Этот метод настраивает предварительный просмотр и сценарии захвата видео и привязывает их к жизненному циклу фрагмента.
      */
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext());
@@ -168,8 +168,8 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Starts recording a video and saves it to the device's media store.
-     * This method changes the record button's appearance, starts a chronometer, and begins capturing video.
+     * Начинает запись видео и сохраняет его в хранилище медиафайлов устройства.
+     * Этот метод изменяет внешний вид кнопки записи, запускает хронометр и начинает захват видео.
      */
     private void startRecording() {
         isRecording = true;
@@ -226,8 +226,8 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Stops the current video recording.
-     * This method resets the record button's appearance, stops the chronometer, and finalizes the recording.
+     * Останавливает текущую запись видео.
+     * Этот метод сбрасывает внешний вид кнопки записи, останавливает хронометр и завершает запись.
      */
     private void stopRecording() {
         isRecording = false;
@@ -241,8 +241,8 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Toggles between the front and back cameras.
-     * After switching the camera selector, it restarts the camera to apply the change.
+     * Переключает между передней и задней камерами.
+     * После переключения селектора камеры перезапускает камеру для применения изменений.
      */
     private void switchCamera() {
         if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -254,9 +254,9 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Called when the fragment is no longer in use.
-     * This is called after {@link #onStop()} and before {@link #onDetach()}.
-     * It shuts down the camera executor service.
+     * Вызывается, когда фрагмент больше не используется.
+     * Вызывается после {@link #onStop()} и до {@link #onDetach()}.
+     * Завершает работу службы исполнителя камеры.
      */
     @Override
     public void onDestroy() {
@@ -265,9 +265,9 @@ public class VideoFragment extends Fragment {
     }
 
     /**
-     * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has been detached from the fragment.
-     * The next time the fragment needs to be displayed, a new view will be created.
-     * This sets the binding to null to avoid memory leaks.
+     * Вызывается, когда представление, ранее созданное методом {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}, было отсоединено от фрагмента.
+     * При следующем отображении фрагмента будет создано новое представление.
+     * Устанавливает привязку в null, чтобы избежать утечек памяти.
      */
     @Override
     public void onDestroyView() {
