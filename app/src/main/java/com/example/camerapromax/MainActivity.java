@@ -1,4 +1,4 @@
-package com.example.cameracoursework;
+package com.example.camerapromax;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

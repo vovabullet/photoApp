@@ -1,4 +1,4 @@
-package com.example.cameracoursework.camera;
+package com.example.camerapromax.camera;
 
 import android.Manifest;
 import android.content.ContentValues;
@@ -22,6 +22,8 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.video.MediaStoreOutputOptions;
 import androidx.camera.video.PendingRecording;
+import androidx.camera.video.Quality;
+import androidx.camera.video.QualitySelector;
 import androidx.camera.video.Recorder;
 import androidx.camera.video.Recording;
 import androidx.camera.video.VideoCapture;
@@ -32,8 +34,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.cameracoursework.R;
-import com.example.cameracoursework.databinding.FragmentVideoBinding;
+import com.example.camerapromax.R;
+import com.example.camerapromax.databinding.FragmentVideoBinding;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.text.SimpleDateFormat;
@@ -43,8 +45,6 @@ import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VideoFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class VideoFragment extends Fragment {
 
@@ -76,6 +76,7 @@ public class VideoFragment extends Fragment {
                     requireActivity().finish();
                 }
             });
+
     /**
      * Inflates the layout for this fragment.
      *
@@ -90,6 +91,7 @@ public class VideoFragment extends Fragment {
         binding = FragmentVideoBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
+
     /**
      * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has returned, but before any saved state has been restored in to the view.
      * This method initializes the camera, sets up listeners for UI elements, and requests necessary permissions.
@@ -122,6 +124,7 @@ public class VideoFragment extends Fragment {
 
         cameraExecutor = Executors.newSingleThreadExecutor();
     }
+
     /**
      * Checks if all required permissions are granted.
      *
@@ -135,6 +138,7 @@ public class VideoFragment extends Fragment {
         }
         return true;
     }
+
     /**
      * Initializes and starts the camera using CameraX.
      * This method sets up the preview and video capture use cases and binds them to the fragment's lifecycle.
@@ -150,7 +154,7 @@ public class VideoFragment extends Fragment {
                 preview.setSurfaceProvider(binding.previewView.getSurfaceProvider());
 
                 Recorder recorder = new Recorder.Builder()
-                        .setQualitySelector(null)
+                        .setQualitySelector(QualitySelector.from(Quality.HIGHEST))
                         .build();
                 videoCapture = VideoCapture.withOutput(recorder);
 
@@ -162,6 +166,7 @@ public class VideoFragment extends Fragment {
             }
         }, ContextCompat.getMainExecutor(requireContext()));
     }
+
     /**
      * Starts recording a video and saves it to the device's media store.
      * This method changes the record button's appearance, starts a chronometer, and begins capturing video.
@@ -219,6 +224,7 @@ public class VideoFragment extends Fragment {
                     }
                 });
     }
+
     /**
      * Stops the current video recording.
      * This method resets the record button's appearance, stops the chronometer, and finalizes the recording.
@@ -233,6 +239,7 @@ public class VideoFragment extends Fragment {
             recording = null;
         }
     }
+
     /**
      * Toggles between the front and back cameras.
      * After switching the camera selector, it restarts the camera to apply the change.
@@ -245,6 +252,7 @@ public class VideoFragment extends Fragment {
         }
         startCamera();
     }
+
     /**
      * Called when the fragment is no longer in use.
      * This is called after {@link #onStop()} and before {@link #onDetach()}.
@@ -255,6 +263,7 @@ public class VideoFragment extends Fragment {
         super.onDestroy();
         cameraExecutor.shutdown();
     }
+
     /**
      * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has been detached from the fragment.
      * The next time the fragment needs to be displayed, a new view will be created.

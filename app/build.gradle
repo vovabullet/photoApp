@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.cameracoursework'
+    namespace 'com.example.camerapromax'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.cameracoursework"
+        applicationId "com.example.camerapromax"
         minSdk 21
         targetSdk 34
         versionCode 1

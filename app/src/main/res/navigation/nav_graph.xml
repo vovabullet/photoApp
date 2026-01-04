@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/photoFragment"
-        android:name="com.example.cameracoursework.camera.PhotoFragment"
+        android:name="com.example.camerapromax.camera.PhotoFragment"
         android:label="fragment_photo"
         tools:layout="@layout/fragment_photo" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/videoFragment"
-        android:name="com.example.cameracoursework.camera.VideoFragment"
+        android:name="com.example.camerapromax.camera.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" >
         <action
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.example.cameracoursework.gallery.GalleryFragment"
+        android:name="com.example.camerapromax.gallery.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" />
 

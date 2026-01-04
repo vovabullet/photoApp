@@ -1,4 +1,4 @@
-package com.example.cameracoursework.gallery;
+package com.example.camerapromax.gallery;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.example.cameracoursework.R;
-import com.example.cameracoursework.databinding.GalleryItemBinding;
+import com.example.camerapromax.R;
+import com.example.camerapromax.databinding.GalleryItemBinding;
 import java.util.List;
 
 /**
@@ -75,12 +75,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     public int getItemCount() {
         return mediaFiles.size();
     }
+
     /**
      * A ViewHolder for displaying a single media file item.
      */
     class GalleryViewHolder extends RecyclerView.ViewHolder {
 
         private final GalleryItemBinding binding;
+
         /**
          * Constructs a new GalleryViewHolder.
          *
@@ -90,6 +92,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
             super(binding.getRoot());
             this.binding = binding;
         }
+
         /**
          * Binds a media file to the view.
          *

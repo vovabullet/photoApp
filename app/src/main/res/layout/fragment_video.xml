@@ -58,7 +58,7 @@
         app:layout_constraintStart_toEndOf="@+id/record_button"
         app:layout_constraintTop_toTopOf="@+id/record_button" />
 
-    <TextView
+    <Chronometer
         android:id="@+id/record_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

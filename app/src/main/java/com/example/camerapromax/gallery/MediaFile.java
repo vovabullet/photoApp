@@ -1,4 +1,4 @@
-package com.example.cameracoursework.gallery;
+package com.example.camerapromax.gallery;
 
 import android.net.Uri;
 

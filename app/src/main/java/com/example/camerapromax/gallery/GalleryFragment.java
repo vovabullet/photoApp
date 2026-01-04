@@ -1,4 +1,4 @@
-package com.example.cameracoursework.gallery;
+package com.example.camerapromax.gallery;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import com.example.cameracoursework.databinding.FragmentGalleryBinding;
+import com.example.camerapromax.databinding.FragmentGalleryBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +27,7 @@ public class GalleryFragment extends Fragment {
     private FragmentGalleryBinding binding;
     private GalleryAdapter adapter;
     private final List<MediaFile> mediaFiles = new ArrayList<>();
+
     /**
      * Inflates the layout for this fragment.
      *
@@ -41,6 +42,7 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
+
     /**
      * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has returned, but before any saved state has been restored in to the view.
      * This method initializes the RecyclerView and loads the media files from the device's storage.
@@ -54,6 +56,7 @@ public class GalleryFragment extends Fragment {
         setupRecyclerView();
         loadMediaFiles();
     }
+
     /**
      * Sets up the RecyclerView with a GridLayoutManager and the GalleryAdapter.
      * It also defines the click listener for the gallery items, allowing users to view or delete them.
@@ -77,6 +80,7 @@ public class GalleryFragment extends Fragment {
         binding.galleryRecyclerview.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         binding.galleryRecyclerview.setAdapter(adapter);
     }
+
     /**
      * Loads media files (images and videos) from the device's external storage using a ContentResolver.
      * The loaded files are added to the {@code mediaFiles} list and the adapter is notified of the data change.
@@ -120,6 +124,7 @@ public class GalleryFragment extends Fragment {
         }
         adapter.notifyDataSetChanged();
     }
+
     /**
      * Deletes a media file from the device's storage.
      * This method shows a confirmation dialog before deleting the file.
@@ -145,6 +150,7 @@ public class GalleryFragment extends Fragment {
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+
     /**
      * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has been detached from the fragment.
      * The next time the fragment needs to be displayed, a new view will be created.

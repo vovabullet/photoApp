@@ -1,4 +1,4 @@
-package com.example.cameracoursework.camera;
+package com.example.camerapromax.camera;
 
 import android.Manifest;
 import android.content.ContentValues;
@@ -25,8 +25,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.cameracoursework.R;
-import com.example.cameracoursework.databinding.FragmentPhotoBinding;
+import com.example.camerapromax.R;
+import com.example.camerapromax.databinding.FragmentPhotoBinding;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.text.SimpleDateFormat;
@@ -35,9 +35,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link PhotoFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass
  */
 public class PhotoFragment extends Fragment {
 
@@ -67,6 +65,7 @@ public class PhotoFragment extends Fragment {
                     requireActivity().finish();
                 }
             });
+
     /**
      * Inflates the layout for this fragment.
      *
@@ -81,6 +80,7 @@ public class PhotoFragment extends Fragment {
         binding = FragmentPhotoBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
+
     /**
      * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has returned, but before any saved state has been restored in to the view.
      * This method initializes the camera, sets up listeners for UI elements, and requests necessary permissions.
@@ -107,6 +107,7 @@ public class PhotoFragment extends Fragment {
 
         cameraExecutor = Executors.newSingleThreadExecutor();
     }
+
     /**
      * Checks if all required permissions are granted.
      *
@@ -120,6 +121,7 @@ public class PhotoFragment extends Fragment {
         }
         return true;
     }
+
     /**
      * Initializes and starts the camera using CameraX.
      * This method sets up the preview and image capture use cases and binds them to the fragment's lifecycle.
@@ -144,6 +146,7 @@ public class PhotoFragment extends Fragment {
             }
         }, ContextCompat.getMainExecutor(requireContext()));
     }
+
     /**
      * Captures a photo and saves it to the device's media store.
      * This method creates a new file in the media store, captures the image, and displays a toast message upon success or failure.
@@ -196,6 +199,7 @@ public class PhotoFragment extends Fragment {
         }
 
     }
+
     /**
      * Toggles between the front and back cameras.
      * After switching the camera selector, it restarts the camera to apply the change.
@@ -208,6 +212,7 @@ public class PhotoFragment extends Fragment {
         }
         startCamera();
     }
+
     /**
      * Called when the fragment is no longer in use.
      * This is called after {@link #onStop()} and before {@link #onDetach()}.
@@ -218,6 +223,7 @@ public class PhotoFragment extends Fragment {
         super.onDestroy();
         cameraExecutor.shutdown();
     }
+
     /**
      * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has been detached from the fragment.
      * The next time the fragment needs to be displayed, a new view will be created.
