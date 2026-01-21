@@ -5,19 +5,19 @@ import android.os.Bundle;
 import androidx.core.view.WindowCompat;
 
 /**
- * The main activity of the application.
- * This activity serves as the host for the navigation component and enables edge-to-edge display.
+ * Главная активность приложения.
+ * Эта активность служит хостом для компонента навигации и включает отображение от края до края.
  */
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * Called when the activity is first created.
-     * This method sets up the edge-to-edge display and inflates the main layout.
+     * Вызывается при первом создании активности.
+     * Этот метод настраивает отображение от края до края и загружает основной макет.
      *
-     * @param savedInstanceState If the activity is being re-initialized after
-     *                           previously being shut down then this Bundle contains the data it most
-     *                           recently supplied in {@link #onSaveInstanceState}.
-     *                           <b><i>Note: Otherwise it is null.</i></b>
+     * @param savedInstanceState Если активность повторно инициализируется после
+     *                           предыдущего завершения, то этот Bundle содержит данные, которые
+     *                           были последний раз предоставлены в {@link #onSaveInstanceState}.
+     *                           <b><i>Примечание: В противном случае он равен null.</i></b>
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
