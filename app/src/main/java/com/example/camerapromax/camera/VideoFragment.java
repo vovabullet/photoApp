@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Chronometer;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -199,6 +198,14 @@ public class VideoFragment extends Fragment {
             pendingRecording.withAudioEnabled();
         }
 
+        binding.switchCameraButton.setEnabled(false);
+        binding.toPhotoButton.setEnabled(false);
+        binding.toGalleryButton.setEnabled(false);
+
+        binding.switchCameraButton.setAlpha(0.4f);
+        binding.toPhotoButton.setAlpha(0.4f);
+        binding.toGalleryButton.setAlpha(0.4f);
+
         binding.recordDuration.setBase(SystemClock.elapsedRealtime());
         binding.recordDuration.setVisibility(View.VISIBLE);
         binding.recordDuration.start();
@@ -234,6 +241,15 @@ public class VideoFragment extends Fragment {
         binding.recordButton.setBackgroundResource(R.drawable.ic_capture);
         binding.recordDuration.stop();
         binding.recordDuration.setVisibility(View.GONE);
+
+        binding.switchCameraButton.setEnabled(true);
+        binding.toPhotoButton.setEnabled(true);
+        binding.toGalleryButton.setEnabled(true);
+
+        binding.switchCameraButton.setAlpha(1f);
+        binding.toPhotoButton.setAlpha(1f);
+        binding.toGalleryButton.setAlpha(1f);
+
         if (recording != null) {
             recording.stop();
             recording = null;

@@ -41,7 +41,10 @@ public class PhotoFragment extends Fragment {
 
     private static final String TAG = "PhotoFragment";
     private static final String FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS";
-    private static final String[] REQUIRED_PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
+    private static final String[] REQUIRED_PERMISSIONS = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO
+    };
 
     private FragmentPhotoBinding binding;
     private ImageCapture imageCapture;
