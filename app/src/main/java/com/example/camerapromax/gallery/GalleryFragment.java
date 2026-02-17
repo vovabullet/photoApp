@@ -67,9 +67,17 @@ public class GalleryFragment extends Fragment {
                     .setTitle("Choose an action")
                     .setItems(new CharSequence[]{"View", "Delete"}, (dialog, which) -> {
                         if (which == 0) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            // Intent — это сообщение Android системе: "Я хочу выполнить действие X с данными Y"
+                            Intent intent = new Intent(Intent.ACTION_VIEW); // "Я хочу ПРОСМОТРЕТЬ что-то"
+                            // передается: URI — где лежит файл, MIME type — что это за файл
+                            // Зачем нужен MIME type? Android должен понять: КАКОЕ приложение может открыть этот файл
                             intent.setDataAndType(mediaFile.getUri(), mediaFile.getType());
+                            // "Я временно разрешаю приложению, которое откроет intent, прочитать этот URI"
                             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            // Android:
+                            // 1. смотрит action (VIEW)
+                            // 2. смотрит MIME type
+                            // 3. ищет приложение, которое умеет открыть.
                             startActivity(intent);
                         } else {
                             deleteMediaFile(mediaFile);
@@ -77,6 +85,7 @@ public class GalleryFragment extends Fragment {
                     })
                     .show();
         });
+        // GridLayoutManager получает context чтобы: узнать плотность пикселей экрана и рассчитать размеры элементов
         binding.galleryRecyclerview.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         binding.galleryRecyclerview.setAdapter(adapter);
     }
@@ -85,20 +94,37 @@ public class GalleryFragment extends Fragment {
      * Загружает медиафайлы (изображения и видео) из внешнего хранилища устройства с помощью ContentResolver.
      * Загруженные файлы добавляются в список {@code mediaFiles}, и адаптер уведомляется об изменении данных.
      */
+    /* Полная схема работы
+        1. очистить список
+        2. сформировать запрос
+        3. ContentResolver → MediaStore
+        4. получить Cursor
+        5. пройтись по строкам
+        6. создать URI
+        7. добавить в список
+        8. обновить UI
+     */
     private void loadMediaFiles() {
+        // Удаляем старые данные (избегание дубликатов)
         mediaFiles.clear();
+        // MediaStore - системная база данных
         String[] projection = {
+                // какие столбцы нужно вернуть
                 MediaStore.Files.FileColumns._ID,
                 MediaStore.Files.FileColumns.DISPLAY_NAME,
                 MediaStore.Files.FileColumns.MEDIA_TYPE,
                 MediaStore.Files.FileColumns.MIME_TYPE
         };
+        // фильтр (игнорируем: аудио, документы, другие файлы)
         String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "=" +
                 MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE + " OR " +
                 MediaStore.Files.FileColumns.MEDIA_TYPE + "=" +
                 MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
-        try (Cursor cursor = requireContext().getContentResolver().query(
+        // Cursor - результат запроса
+        // ContentProvider — это слой доступа к данным. В данном случае: MediaStore = ContentProvider
+        try (Cursor cursor = requireContext().getContentResolver().query( // try-with-resources - Автоматически cursor.close()
+                // "external" = внешнее хранилище
                 MediaStore.Files.getContentUri("external"),
                 projection,
                 selection,
@@ -106,22 +132,27 @@ public class GalleryFragment extends Fragment {
                 MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
         )) {
             if (cursor != null) {
+                // Cursor хранит данные как таблицу, по этому необходимо узнать индекс столбца
                 int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID);
                 int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME);
                 int mimeTypeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MIME_TYPE);
 
                 while (cursor.moveToNext()) {
+                    // Получаем значения колонок. Это ссылка через ContentProvider
                     long id = cursor.getLong(idColumn);
                     String name = cursor.getString(nameColumn);
                     String mimeType = cursor.getString(mimeTypeColumn);
+                    // создание URI
                     Uri contentUri = Uri.withAppendedPath(
                             MediaStore.Files.getContentUri("external"),
                             String.valueOf(id)
                     );
+                    // формируем модель для UI
                     mediaFiles.add(new MediaFile(contentUri, name, mimeType));
                 }
             }
         }
+        // обновление RecyclerView
         adapter.notifyDataSetChanged();
     }
 

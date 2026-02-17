@@ -155,6 +155,7 @@ public class VideoFragment extends Fragment {
                 Recorder recorder = new Recorder.Builder()
                         .setQualitySelector(QualitySelector.from(Quality.HIGHEST))
                         .build();
+                // Создаётся use case: VideoCapture: "я хочу получать поток кадров для записи"
                 videoCapture = VideoCapture.withOutput(recorder);
 
                 cameraProvider.unbindAll();
@@ -190,8 +191,10 @@ public class VideoFragment extends Fragment {
                 .setContentValues(contentValues)
                 .build();
 
+        // Получаем объект управления записью.
         PendingRecording pendingRecording = videoCapture.getOutput()
                 .prepareRecording(requireContext(), mediaStoreOutputOptions);
+        // запись подготовлена, но ещё НЕ запущена
 
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) ==
                 PackageManager.PERMISSION_GRANTED) {
